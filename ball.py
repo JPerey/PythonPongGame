@@ -23,4 +23,8 @@ class Ball(Turtle):
         self.y_move = -self.y_move
 
     def paddle_bounce(self):
+        if self.x_move > 0:
+            self.x_move += 4
+        else:
+            self.x_move -= 4
         self.x_move = -self.x_move

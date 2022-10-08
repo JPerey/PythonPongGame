@@ -9,6 +9,7 @@ screen.setup(800, 600)
 screen.title("Python Pong")
 screen.bgcolor("black")
 screen.tracer(0)
+another = "yes"
 
 paddle1 = Paddle()
 paddle2 = Paddle()
@@ -37,15 +38,33 @@ def game_run():
         time.sleep(.1)
         scoreboard.print_score(p1_score, p2_score)
 
-        print(f"distance ball from paddle2: {ball.distance(paddle2)}")
-
         if ball.distance(ball.xcor(), y=295) < 10 or ball.distance(ball.xcor(), y=-285) < 10:
             ball.bounce()
 
-        if ball.distance(paddle1) < 15 or ball.distance(paddle2) < 15:
+        if ball.xcor() < -330 and ball.distance(paddle1) < 60:
             ball.paddle_bounce()
+
+        if ball.xcor() > 330 and ball.distance(paddle2) < 60:
+            ball.paddle_bounce()
+
+        if ball.xcor() > 400:
+            p1_score += 1
+            ball.goto(0, 0)
+            ball.x_move = 10
+            scoreboard.print_score(p1_score, p2_score)
+
+        if ball.xcor() < -400:
+            p2_score += 1
+            ball.goto(0, 0)
+            ball.x_move = 10
+            scoreboard.print_score(p1_score, p2_score)
+
+        if p1_score == 3 or p2_score == 3:
+            game_over = True
+            scoreboard.game_over_screen(p1_score, p2_score)
 
 
 game_run()
+
 
 screen.exitonclick()

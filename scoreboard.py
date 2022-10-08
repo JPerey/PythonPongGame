@@ -14,4 +14,10 @@ class Scoreboard(Turtle):
     def print_score(self, p1_score, p2_score):
         self.clear()
         self.goto(-10, 270)
-        self.write(f"{p1_score} : {p2_score}", True, font=("Arial", 30, "normal"))
+        self.write(f"{p1_score} : {p2_score}", True,align="center", font=("Arial", 30, "normal"))
+
+    def game_over_screen(self, p1_score, p2_score):
+        self.clear()
+        self.goto(-10, 0)
+        self.write(f"GAME OVER \n"
+                   f"        {p1_score} : {p2_score}", True, align="center", font=("Arial", 30, "normal"))
